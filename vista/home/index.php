@@ -12,7 +12,23 @@ include_once("../estructura/cabeceraBT.php");
 <hr class="separator">
 <div class="greyblock">Tener en cuenta que se debe tener una BBDD creada en su gestor de BBDD llamada <strong>autosdb</strong>. El script para su creacion lo puede descargar de <a href="../../sql/autosdb.sql" target="_blank">autosdb</a></div>
 <p class="heading1a">Para tener en cuenta:</p>
-<div class="content">Este ejemplo trabaja con un MVC usando Mapeo Objeto relacional con objetos. Para mostrar 2 opciones de implementar el uso del mapeo en las interfaces, se puede observar diferencias entre la implementacion en el uso de Usuarios y de Autos.</div>
+<div class="content">
+    Este ejemplo trabaja con un MVC usando Mapeo Objeto relacional con objetos. Para mostrar 2 opciones de implementar el uso del mapeo en las interfaces, se puede observar diferencias entre la implementacion en el uso de Usuarios y de Autos.
+</div>
+<p class="heading1a">Investigación</p>
+<div class="content">
+    <p class="contenido1">
+        Utilizamos la biblioteca DiDOM para extraer texto de documentos HTML. DiDOM es una herramienta poderosa que facilita la manipulación de documentos HTML y XML en PHP. Puede encontrar información de esta biblioteca en el siguiente link: <a href="https://github.com/Imangazaliev/DiDOM" target="_blank">Didom</a>
+    </p>
+    <p class="contenido2">
+        Luego utilizamos Statickz PHP Translate para traducir el contenido extraído. Statickz PHP Translate es una biblioteca que facilita la traducción de texto utilizando diferentes servicios de traducción. Puede encontrar información de esta biblioteca en el siguiente link: <a href="https://github.com/statickidz/php-google-translate-free" target="_blank">Statickidz</a>
+    </p>
+    <p class="contenido3">
+        Finalmente, utilizamos Respect Validation para validar los datos de los formularios en el backend. Respect Validation es una biblioteca de validación sencilla y poderosa para PHP. Puede encontrar información de esta biblioteca en el siguiente link: <a href="https://respect-validation.readthedocs.io/en/2.3/" target="_blank">Respect Validation</a>
+    </p>
+</div>
+
+
 
 <?php
 include_once("../estructura/pieBT.php");
