@@ -24,7 +24,7 @@ $textosMain = array_merge(
 //print_r($textosMain);
 
 // Textos de los links a eliminar
-$palabrasAEliminar = ["Didom", "Statickidz", "Respect Validation"];
+$palabrasAEliminar = ["DIDOM", "STATICKIDZ", "RESPECT VALIDATION"];
 
 // Recorreremos los elementos específicos y eliminamos las palabras
 for ($i = 7; $i <= 9; $i++) {
