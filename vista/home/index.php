@@ -16,4 +16,14 @@ include_once("../estructura/cabeceraBT.php");
 
 <?php
 include_once("../estructura/pieBT.php");
+/*
+// Ver el contenido del caché
+if (isset($_SESSION['translations'])) {
+    echo '<pre>';
+    print_r($_SESSION['translations']);
+    echo '</pre>';
+} else {
+    echo 'No hay traducciones en caché.';
+}
+*/
 ?>

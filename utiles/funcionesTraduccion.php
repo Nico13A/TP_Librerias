@@ -65,7 +65,7 @@ function traducirTextos($textos, $origen, $destino) {
 
     foreach ($textos as $texto) { // Itera sobre los textos a traducir
         $textosTraducidos[] = obtenerTraduccion($origen, $destino, $texto); // Traduce el texto
-        usleep(500000); // Espera 0.5 segundos entre traducciones para evitar sobrecarga
+        //usleep(500000); // Espera 0.5 segundos entre traducciones para evitar sobrecarga
     }
     
     return $textosTraducidos; // Retorna los textos traducidos

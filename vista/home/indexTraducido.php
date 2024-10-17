@@ -1,7 +1,5 @@
 <?php
 
-//session_start();
-
 include_once "../estructura/cabeceraBT.php";
 include_once "../../utiles/vendor/autoload.php";
 use DiDom\Document;

@@ -5,7 +5,8 @@ use Respect\Validation\Exceptions\NestedValidationException;
 
 class ABMUsuario {
     /**
-     * Espera como parámetro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancia del objeto
+     * Espera como parámetro un arreglo asociativo donde las claves 
+     * coinciden con los nombres de las variables instancia del objeto.
      * @param array $datos
      * @return array
      */
@@ -32,7 +33,7 @@ class ABMUsuario {
     
 
     /**
-     * Carga un objeto Usuario desde un arreglo asociativo
+     * Carga un objeto Usuario desde un arreglo asociativo.
      * @param array $param
      * @return Usuario|null
      */
@@ -46,7 +47,7 @@ class ABMUsuario {
     }
 
     /**
-     * Carga un objeto Usuario con clave
+     * Carga un objeto Usuario con clave.
      * @param array $param
      * @return Usuario|null
      */
@@ -60,7 +61,7 @@ class ABMUsuario {
     }
 
     /**
-     * Verifica si los campos claves están seteados
+     * Verifica si los campos claves están seteados.
      * @param array $param
      * @return boolean
      */
@@ -69,7 +70,7 @@ class ABMUsuario {
     }
 
     /**
-     * Permite insertar un nuevo usuario
+     * Permite insertar un nuevo usuario.
      * @param array $param
      * @return array
      */
@@ -78,27 +79,23 @@ class ABMUsuario {
             'exito' => false,
             'errores' => []
         ];
-        
-        // Validar los datos del formulario
+        // Validar los datos del formulario.
         $errores = $this->validarFormulario($param['dni'], $param['nombre'], $param['email']);
-        
         if (empty($errores)) {
-            // Si no hay errores, proceder con la inserción
+            // Si no hay errores, proceder con la inserción.
             $elObjtTabla = $this->cargarObjeto($param);
             if ($elObjtTabla != null && $elObjtTabla->insertar()) {
                 $resultado['exito'] = true;
             }
         } else {
-            // Si hay errores, agregar los errores al arreglo de resultado
+            // Si hay errores, agregar los errores al arreglo de resultado.
             $resultado['errores'] = $errores;
         }
-        
         return $resultado;
     }
     
-
     /**
-     * Permite eliminar un usuario
+     * Permite eliminar un usuario.
      * @param array $param
      * @return array
      */
@@ -107,19 +104,17 @@ class ABMUsuario {
             'exito' => false,
             'errores' => []
         ];
-
         if ($this->seteadosCamposClaves($param)) {
             $elObjtTabla = $this->cargarObjetoConClave($param);
             if ($elObjtTabla != null && $elObjtTabla->eliminar()) {
                 $resultado['exito'] = true;
             } 
         }
-
         return $resultado;
     }
 
     /**
-     * Permite modificar un usuario
+     * Permite modificar un usuario.
      * @param array $param
      * @return array
      */
@@ -128,11 +123,9 @@ class ABMUsuario {
             'exito' => false,
             'errores' => []
         ];
-
         if ($this->seteadosCamposClaves($param)) {
             // Validar los datos del formulario
             $errores = $this->validarFormulario($param['dni'], $param['nombre'], $param['email']);
-        
             if (empty($errores)) {
                 // Si no hay errores, proceder con la modificación
                 $elObjtTabla = $this->cargarObjeto($param);
@@ -148,7 +141,7 @@ class ABMUsuario {
     }
 
     /**
-     * Permite buscar usuarios
+     * Permite buscar usuarios.
      * @param array $param
      * @return array
      */
@@ -172,39 +165,45 @@ class ABMUsuario {
 
     // FUNCIONES DE VALIDACIÓN
 
+    /**
+     * Valida el DNI de un usuario.
+     * @param int $dni 
+     * @return array 
+     */
     private function validarDni($dni) {
         $resultados = [];
-        // Define el validador para el DNI
+        // Define el validador para el DNI.
         $dniValidador = v::numericVal()->noWhitespace()->length(8, 8);
         try {
             // Intenta validar el DNI
             $dniValidador->assert($dni);
         } catch (NestedValidationException $exception) {
-            // Captura de mensajes de error personalizados
+            // Captura de mensajes de error personalizados.
             $resultados = $exception->getMessages([
                 'numericVal' => '{{name}} debe contener solo números.',
                 'noWhitespace' => '{{name}} no debe contener espacios.',
                 'length' => '{{name}} debe tener exactamente 8 caracteres.'
             ]);
         }
-        // Si no se pasa la validación, retorna el arreglo de errores
+        // Si no se pasa la validación, retorna el arreglo de errores.
         return $resultados;
     }
 
+    /**
+     * Valida el nombre de un usuario.
+     * @param string $nombre
+     * @return array 
+     */
     private function validarNombre($nombre) {
         $resultados = [];
-    
-        // Define el validador para el nombre
-        $nombreValidador = v::alpha(' ')     // Permite solo letras y espacios.
-                            ->length(5, 50)  // Asegura que la longitud esté entre 1 y 50 caracteres.
-                            ->not(v::regex('/\s{2,}/'))  // No permite más de un espacio consecutivo.
-                            ->notEmpty();  // Asegura que no esté vacío.
-    
+        // Define el validador para el nombre.
+        $nombreValidador = v::alpha(' ')->length(5, 50)->not(v::regex('/\s{2,}/'))->notEmpty();
+        // No permite más de un espacio consecutivo.
         try {
             // Intenta validar el nombre
             $nombreValidador->assert($nombre);
         } catch (NestedValidationException $exception) {
-            // Captura de mensajes de error personalizados
+            // Captura de mensajes de error personalizados.
             $resultados = $exception->getMessages([
                 'alpha' => '{{name}} debe contener solo letras y espacios.',
                 'length' => '{{name}} debe tener entre 5 y 50 caracteres.',
@@ -212,16 +211,19 @@ class ABMUsuario {
                 'notEmpty' => '{{name}} no debe estar vacío.'
             ]);
         }
-        // Si no se pasa la validación, retorna el arreglo de errores
+        // Si no se pasa la validación, retorna el arreglo de errores.
         return $resultados;
     }
 
+    /**
+     * Valida el email de un usuario.
+     * @param string $email 
+     * @return array 
+     */
     private function validarEmail($email) {
         $resultados = [];
-    
         // Define el validador para el email
         $emailValidador = v::email();
-    
         try {
             // Intenta validar el email
             $emailValidador->assert($email);
@@ -235,6 +237,13 @@ class ABMUsuario {
         return $resultados;
     }
     
+    /**
+     * Valida un formulario con DNI, nombre y email.
+     * @param int $dni 
+     * @param string $nombre 
+     * @param string $email 
+     * @return array 
+     */
     private function validarFormulario($dni, $nombre, $email) {
         $errores = [];
     

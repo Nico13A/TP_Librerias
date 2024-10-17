@@ -1,28 +1,4 @@
 <?php
-/*
-include_once("../estructura/cabeceraBT.php");
-$resp = false;
-$objTrans = new ABMAuto();
-if(!isset($datos)) {
-    $datos = data_submitted();
-} 
-if (isset($datos['accion'])){
-    if ($datos['accion']=='listar') {
-        $lista = $objTrans->mostrarDatos();
-        //$lista = $objTrans->buscar(null);
-    } else {
-    $resp = $objTrans->abm($datos);
-    if($resp){
-        $mensaje = "La accion ".$datos['accion']." se realizo correctamente.";
-    }else {
-        $mensaje = "La accion ".$datos['accion']." no pudo concretarse.";
-    }
-    //echo $mensaje;
-    echo("<script>location.href = './index.php?msg=$mensaje';</script>");
-}
-}
-*/
-
 
 include_once("../estructura/cabeceraBT.php");
 include_once "../../utiles/vendor/autoload.php";
